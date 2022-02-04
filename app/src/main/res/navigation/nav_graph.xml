@@ -4,11 +4,11 @@
     android:id="@+id/nav_graph"
     app:startDestination="@+id/quiz_fragment">
 
-    <fragment
-        android:id="@+id/welcome_fragment"
-        android:name="com.prisar.chakri.quiz.QuizFragment"
-        android:label="Welcome">
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/welcome_fragment"-->
+<!--        android:name="com.prisar.chakri.quiz.QuizFragment"-->
+<!--        android:label="Welcome">-->
+<!--    </fragment>-->
 
     <fragment
         android:id="@+id/quiz_fragment"
