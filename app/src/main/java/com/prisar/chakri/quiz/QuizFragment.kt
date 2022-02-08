@@ -8,15 +8,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -24,14 +20,18 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.google.android.material.composethemeadapter.MdcTheme
 import com.prisar.chakri.R
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.*
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.lifecycle.ViewModel
 
-class QuizFragment: Fragment() {
+class QuizFragment : Fragment() {
+
+    private lateinit var questions: List<Question>
+
+    val apiService = QuizService.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,9 +47,10 @@ class QuizFragment: Fragment() {
 
             val textView = findViewById<TextView>(R.id.volley_text)
 
+            val vm = QuestionViewModel()
             setContent {
                 MdcTheme {
-                    Quiz()
+                    QuizView(vm)
                 }
             }
         }
@@ -57,87 +58,99 @@ class QuizFragment: Fragment() {
 }
 
 @Composable
-private fun Quiz() {
+fun QuizView(vm: QuestionViewModel) {
+    LaunchedEffect(Unit, block = {
+        vm.getQuestionList()
+    })
 
-    val queue = Volley.newRequestQueue(LocalContext.current)
-    val url = "https://reqres.in/api/users?page=2"
-
-    val stringRequest = StringRequest(
-        Request.Method.GET, url,
-        Response.Listener<String> { response ->
-            // Display the first 500 characters of the response string.
-//            textView.text = "Response is: ${response.substring(0, 500)}"
-            Log.d("volley response", response.toString())
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Row {
+                        Text("Todos")
+                    }
+                })
         },
-        Response.ErrorListener { error ->
-//            textView.text = "That didn't work!" + error.toString()
-            Log.e("volley error", error.toString())
-        })
+        content = {
+            if (vm.errorMessage.isEmpty()) {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    LazyColumn(modifier = Modifier.fillMaxHeight()) {
+                        items(vm.questionList) { question ->
+                            Column {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(16.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(0.dp, 0.dp, 16.dp, 0.dp)
+                                    ) {
+                                        Text(
+                                            question.description,
+                                            maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.width(16.dp))
+                                    Checkbox(checked = question.hasImage, onCheckedChange = null)
+                                }
+                                Divider()
+                            }
+                        }
+                    }
+                }
+            } else {
+                Text(vm.errorMessage)
+            }
+        }
+    )
 
-    queue.add(stringRequest)
-
-//    Column(
-//        modifier = Modifier
-//            .background(Color.LightGray)
-//            .size(600.dp)
-//            .verticalScroll(rememberScrollState()),
-//        verticalArrangement = Arrangement.Center,
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        repeat(10) {
-//            val count = remember { mutableStateOf(it + 1) }
-//            val questionStatement =
-//                "What is the answer. Its a long question? চাকরির খবর ও প্রস্তুতি"
-//            val optionA = "a)" + " is correct"
-//            val optionB = "b)" + " is correct"
-//            val optionC = "c)" + " is correct"
-//            val optionD = "d)" + " is correct"
+//        val queue = Volley.newRequestQueue(LocalContext.current)
+//        val url = "https://asia-south1-agrohikulik.cloudfunctions.net/questionSets"
 //
-//            Card(
-//                backgroundColor = MaterialTheme.colors.background,
-//                modifier = Modifier.fillMaxWidth().height(100.dp)
-//            ) {
-//                Text(
-//                    text = count.value.toString() + ".",
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(2.dp),
-////                    modifier = Modifier.clickable { count.value += 1 },
-//                )
-//
-//                Text(
-//                    text = questionStatement,
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(horizontal = 40.dp, vertical = 2.dp)
-//                )
-//            }
-//
-//            Card(modifier = Modifier.fillMaxWidth()) {
-//                Text(
-//                    text = optionA,
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(horizontal = 15.dp, vertical = 0.dp)
-//                )
-//
-//                Text(
-//                    text = optionB,
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(horizontal = 15.dp, vertical = 50.dp)
-//                )
-//
-//                Text(
-//                    text = optionC,
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(horizontal = 15.dp, vertical = 100.dp)
-//                )
-//
-//                Text(
-//                    text = optionD,
-//                    style = MaterialTheme.typography.h5,
-//                    modifier = Modifier.padding(horizontal = 15.dp, vertical = 150.dp)
-//                )
-//            }
-//
-//            Divider(color = Color.Black)
+//        //    https://stackoverflow.com/a/68046929/3925626
+//        val questions = remember {
+//            mutableStateListOf<Question>()
 //        }
-//    }
+//        val request = JsonObjectRequest(Request.Method.GET, url, null,
+//            { response ->
+//                try {
+//                    Log.d("volley response", response.toString())
+//                    val jsonArray = response.getJSONArray("questions")
+//                    for (i in 0 until jsonArray.length()) {
+//                        val question = jsonArray.getJSONObject(i)
+//                        val type = question.getString("type")
+//                        val description = question.getString("description")
+//                        val optionA = question.getString("optionA")
+//                        val optionB = question.getString("optionB")
+//                        val optionC = question.getString("optionC")
+//                        val optionD = question.getString("optionD")
+//                        val correctOption = question.getString("correctOption")
+//                        val hasImage = question.getBoolean("hasImage")
+//
+//                        val questionObj = Question(type, description, imageUrl = "", optionA, optionB, optionC, optionD, correctOption, hasImage = false)
+//                        questions.add(questionObj)
+//                        Log.d("json parse", question.toString())
+//                    }
+//
+////                questions = listOf(jsonArray).map { q -> Question(q.getString("type")) }
+//                } catch (e: JSONException) {
+//                    Log.d("parsing", e.toString())
+//                }
+//            },
+//            { error ->
+////            textView.text = "That didn't work!" + error.toString()
+//                Log.e("volley error", error.toString())
+//            })
+//
+//        queue.add(request)
 }
+
+//fun <T> SnapshotStateList<T>.swapList(newList: List<T>){
+//    clear()
+//    addAll(newList)
+//}
