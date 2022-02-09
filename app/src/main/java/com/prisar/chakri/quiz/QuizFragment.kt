@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -64,6 +65,9 @@ fun QuizView(vm: QuestionViewModel) {
 
     val correctAnswers = remember { mutableStateOf(0) }
 
+    val isDarkTheme = isSystemInDarkTheme()
+    val bgColor = ansTextColor("UNANSWERED", isDarkTheme)
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,7 +84,7 @@ fun QuizView(vm: QuestionViewModel) {
                         itemsIndexed(vm.questionList) { index, question ->
                             val questionNo = (index + 1).toString()
                             val answeredStatus = remember { mutableStateOf("UNANSWERED") }
-                            val answerColor = remember { mutableStateOf(White) }
+                            val answerColor = remember { mutableStateOf(bgColor) }
                             val aIsSelected = remember { mutableStateOf(false) }
                             val bIsSelected = remember { mutableStateOf(false) }
                             val cIsSelected = remember { mutableStateOf(false) }
@@ -120,7 +124,7 @@ fun QuizView(vm: QuestionViewModel) {
                                                     if (question.correctOption == "A") "CORRECT" else "WRONG"
                                                 correctAnswers.value = if (question.correctOption == "A") correctAnswers.value+1 else correctAnswers.value
                                                 answerColor.value =
-                                                    ansTextColor(answeredStatus.value.toString())
+                                                    ansTextColor(answeredStatus.value.toString(), isDarkTheme)
                                             }
                                             aIsSelected.value = checked
                                         }
@@ -140,7 +144,7 @@ fun QuizView(vm: QuestionViewModel) {
                                                     if (question.correctOption == "B") "CORRECT" else "WRONG"
                                                 correctAnswers.value = if (question.correctOption == "B") correctAnswers.value+1 else correctAnswers.value
                                                 answerColor.value =
-                                                    ansTextColor(answeredStatus.value.toString())
+                                                    ansTextColor(answeredStatus.value.toString(), isDarkTheme)
                                             }
                                             bIsSelected.value = checked
                                         }
@@ -160,7 +164,7 @@ fun QuizView(vm: QuestionViewModel) {
                                                     if (question.correctOption == "C") "CORRECT" else "WRONG"
                                                 correctAnswers.value = if (question.correctOption == "C") correctAnswers.value+1 else correctAnswers.value
                                                 answerColor.value =
-                                                    ansTextColor(answeredStatus.value.toString())
+                                                    ansTextColor(answeredStatus.value.toString(), isDarkTheme)
                                             }
                                             cIsSelected.value = checked
                                         }
@@ -180,7 +184,7 @@ fun QuizView(vm: QuestionViewModel) {
                                                     if (question.correctOption == "D") "CORRECT" else "WRONG"
                                                 correctAnswers.value = if (question.correctOption == "D") correctAnswers.value+1 else correctAnswers.value
                                                 answerColor.value =
-                                                    ansTextColor(answeredStatus.value.toString())
+                                                    ansTextColor(answeredStatus.value.toString(), isDarkTheme)
                                             }
                                             dIsSelected.value = checked
                                         }
@@ -207,9 +211,9 @@ fun QuizView(vm: QuestionViewModel) {
     )
 }
 
-fun ansTextColor(answeredStatus: String): Color {
+fun ansTextColor(answeredStatus: String, isDarkTheme: Boolean): Color {
     val Red = Color(0xffff0000)
     val Green = Color(red = 0f, green = 1f, blue = 0f)
-    val White = Color(red = 1f, green = 1f, blue = 1f)
-    return if (answeredStatus.toString() == "CORRECT") Green else (if (answeredStatus.toString() == "UNANSWERED") White else Red)
+    val Hide = if (isDarkTheme) Color(red = 0f, green = 0f, blue = 0f) else Color(red = 1f, green = 1f, blue = 1f)
+    return if (answeredStatus.toString() == "CORRECT") Green else (if (answeredStatus.toString() == "UNANSWERED") Hide else Red)
 }
