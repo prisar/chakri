@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -18,11 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import com.google.android.material.composethemeadapter.MdcTheme
-import com.prisar.chakri.R
 
 class QuizFragment : Fragment() {
     val Red = Color(0xffff0000)
@@ -41,7 +37,7 @@ class QuizFragment : Fragment() {
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
 
-            val textView = findViewById<TextView>(R.id.volley_text)
+//            val textView = findViewById<TextView>(R.id.volley_text)
 
             val vm = QuestionViewModel()
             setContent {
@@ -194,10 +190,10 @@ fun QuizView(vm: QuestionViewModel) {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(16.dp),
+                                        .padding(bottom = 30.dp, start = 16.dp, top = 5.dp, end = 0.dp),
                                     horizontalArrangement = Arrangement.Start
                                 ){
-                                    Text(text = "Answer: " + question.correctOption, modifier = Modifier.padding(vertical = 5.dp, horizontal = 2.dp), color = answerColor.value)
+                                    Text(text = "Answer: " + question.correctOption, modifier = Modifier.padding(vertical = 16.dp, horizontal = 2.dp), color = answerColor.value)
                                 }
                                 Divider()
                             }
