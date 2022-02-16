@@ -10,16 +10,16 @@ android {
         applicationId "com.prisar.chakri"
         minSdk 21
         targetSdk 32
-        versionCode 82
-        versionName "1.2.82"
+        versionCode 83
+        versionName "1.2.83"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
