@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.prisar.chakri"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 83
         versionName "1.2.83"
