@@ -43,8 +43,8 @@ dependencies {
     implementation des.kotlinVersion
     implementation des.coreKtx
     implementation des.appcompat
-    implementation project(path: ':model')
-    implementation project(path: ':core')
+//    implementation project(path: ':model')
+//    implementation project(path: ':core')
     testImplementation des.junit
     androidTestImplementation des.extJunit
     androidTestImplementation des.espressoCore
