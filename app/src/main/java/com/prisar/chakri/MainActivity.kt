@@ -56,7 +56,11 @@ fun CardWithMultipleViews() {
 
     val cardItems = listOf(
         CardItem("আমি", "I"),
-        CardItem("তুমি", "You")
+        CardItem("তুমি", "You"),
+        CardItem("তারা", "They"),
+        CardItem("ধন্যবাদ", "Thank you"),
+        CardItem("তুমি কেমন আছো?", "How are you?"),
+        CardItem("আমি বাড়ি যাচ্ছি", "I am going home")
     )
 
     val paddingModifier = Modifier.padding(10.dp)
@@ -81,8 +85,20 @@ fun CardWithMultipleViews() {
 
                     val (x,y) = dragAmount
                     when {
-                        x > 0 ->{ /* right */ if (x > 20) offsetX = 0.0F }
-                        x < 0 ->{ /* left */ if (x < -20) offsetX = 0.0F }
+                        x > 0 ->{
+                            /* right */
+                            if (x > 20) {
+                                offsetX = 0.0F
+                                cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
+                            }
+                        }
+                        x < 0 ->{
+                            /* left */
+                            if (x < -20) {
+                                offsetX = 0.0F
+                                cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
+                            }
+                        }
                     }
                     when {
                         y > 0 -> { /* down */ offsetY = 0.0F }
@@ -128,7 +144,9 @@ fun CardWithMultipleViews() {
                 Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 42.sp))
             }
             
-            Button(onClick = {
+            Button(
+                modifier = Modifier.padding(16.dp),
+                onClick = {
                 cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
             }) {
                 Text(text = ">")
