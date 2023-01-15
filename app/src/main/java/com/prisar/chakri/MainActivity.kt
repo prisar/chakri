@@ -1,21 +1,15 @@
 package com.prisar.chakri
 
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.Scaffold
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-//import com.prisar.chakri.quiz.QuizScreen
+import androidx.compose.ui.platform.LocalContext
 import com.prisar.chakri.ui.theme.ChakriTheme
-
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.navigation.findNavController
-//import androidx.navigation.ui.AppBarConfiguration
-//import androidx.navigation.ui.setupActionBarWithNavController
-//import androidx.navigation.ui.setupWithNavController
-//import com.google.android.material.bottomnavigation.BottomNavigationView
-//import com.google.android.material.navigation.NavigationView
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,14 +20,6 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-//        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-//        val navController = findNavController(R.id.nav_host_fragment)
-//        val appBarConfiguration = AppBarConfiguration(setOf(
-//            R.id.welcome_fragment,
-//            R.id.quiz_fragment))
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-//        navView.setupWithNavController(navController)
-
 //        QuizScreen()
 
     }
@@ -41,7 +27,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String) {
-//    Scaffold { paddingValues: PaddingValues ->
-//        AppNavGraph(modifier = Modifier.padding(paddingValues))
-//    }
+    Text("Chakri")
+
+    val textToSpeech: TextToSpeech = TextToSpeech(LocalContext.current, TextToSpeech.OnInitListener {  })
+
+    textToSpeech.setLanguage(Locale("bn_IN"))
+
+    Button(onClick = { textToSpeech.speak("তোমার বাড়ি কোথায়", TextToSpeech.QUEUE_FLUSH,null) }) {
+        Text(text = "speak")
+    }
 }
