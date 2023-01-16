@@ -7,8 +7,11 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
@@ -21,12 +24,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.prisar.chakri.ui.theme.Black
 import com.prisar.chakri.ui.theme.ChakriTheme
 import com.prisar.chakri.ui.theme.Teal200
+import com.prisar.chakri.ui.theme.Yellow
 import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.math.roundToInt
@@ -60,7 +67,11 @@ fun CardWithMultipleViews() {
         CardItem("তারা", "They"),
         CardItem("ধন্যবাদ", "Thank you"),
         CardItem("তুমি কেমন আছো?", "How are you?"),
-        CardItem("আমি বাড়ি যাচ্ছি", "I am going home")
+        CardItem("আমি বাড়ি যাচ্ছি", "I am going home"),
+        CardItem("তুমি কি করছো", "What are you doing"),
+        CardItem("তোমার নাম কি", "WHat is your name"),
+        CardItem("তুমি কি করো ", "What do you do"),
+        CardItem("সে ব্যাঙ্গালোরে থাকে", "He lives in Bangalore"),
     )
 
     val paddingModifier = Modifier.padding(10.dp)
@@ -143,14 +154,24 @@ fun CardWithMultipleViews() {
                 }) {
                 Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 42.sp))
             }
-            
-            Button(
-                modifier = Modifier.padding(16.dp),
-                onClick = {
-                cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
-            }) {
-                Text(text = ">")
-            }
+
+
+            val shape = CircleShape
+
+                Text(text = "Next >>",
+                    style = TextStyle( color = Black,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .border(2.dp, Black, shape)
+                        .background(Yellow, shape)
+                        .padding(16.dp)
+                        .clickable  {
+                    cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
+                })
+
         }
     }
 }
