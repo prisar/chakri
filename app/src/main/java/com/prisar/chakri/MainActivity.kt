@@ -3,7 +3,6 @@ package com.prisar.chakri
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
@@ -16,7 +15,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
 import androidx.compose.material.Text
-import androidx.compose.material.contentColorFor
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,14 +25,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.prisar.chakri.ui.theme.Black
 import com.prisar.chakri.ui.theme.ChakriTheme
 import com.prisar.chakri.ui.theme.Teal200
 import com.prisar.chakri.ui.theme.Yellow
-import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -94,26 +90,30 @@ fun CardWithMultipleViews() {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
 
-                    val (x,y) = dragAmount
+                    val (x, y) = dragAmount
                     when {
-                        x > 0 ->{
+                        x > 0 -> {
                             /* right */
                             if (x > 20) {
                                 offsetX = 0.0F
-                                cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
+                                cardNumber =
+                                    if (cardNumber + 1 < cardItems.size) cardNumber + 1 else 0
                             }
                         }
-                        x < 0 ->{
+                        x < 0 -> {
                             /* left */
                             if (x < -20) {
                                 offsetX = 0.0F
-                                cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
+                                cardNumber =
+                                    if (cardNumber + 1 < cardItems.size) cardNumber + 1 else 0
                             }
                         }
                     }
                     when {
-                        y > 0 -> { /* down */ offsetY = 0.0F }
-                        y < 0 -> { /* up */ offsetY = 0.0F }
+                        y > 0 -> { /* down */ offsetY = 0.0F
+                        }
+                        y < 0 -> { /* up */ offsetY = 0.0F
+                        }
                     }
 
                     offsetX += dragAmount.x
@@ -128,7 +128,8 @@ fun CardWithMultipleViews() {
         ) {
             Text(cardItems[cardNumber].fromText, style = TextStyle(fontSize = 42.sp))
 
-            val textToSpeech: TextToSpeech = TextToSpeech(LocalContext.current, TextToSpeech.OnInitListener {  })
+            val textToSpeech: TextToSpeech =
+                TextToSpeech(LocalContext.current, TextToSpeech.OnInitListener { })
             val utteranceProgressListener = object : UtteranceProgressListener() {
                 override fun onStart(p0: String?) {
                     TODO("Not yet implemented")
@@ -149,7 +150,11 @@ fun CardWithMultipleViews() {
             Button(colors = buttonColors(backgroundColor = Teal200),
                 modifier = Modifier.padding(16.dp),
                 onClick = {
-                    textToSpeech.speak(cardItems[cardNumber].secondText, TextToSpeech.QUEUE_FLUSH,null)
+                    textToSpeech.speak(
+                        cardItems[cardNumber].secondText,
+                        TextToSpeech.QUEUE_FLUSH,
+                        null
+                    )
 
                 }) {
                 Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 42.sp))
@@ -158,19 +163,21 @@ fun CardWithMultipleViews() {
 
             val shape = CircleShape
 
-                Text(text = "Next >>",
-                    style = TextStyle( color = Black,
+            Text(text = "Next >>",
+                style = TextStyle(
+                    color = Black,
                     fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .border(2.dp, Black, shape)
-                        .background(Yellow, shape)
-                        .padding(16.dp)
-                        .clickable  {
-                    cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber+1 else 0
-                })
+                    textAlign = TextAlign.Center
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .border(2.dp, Black, shape)
+                    .background(Yellow, shape)
+                    .padding(16.dp)
+                    .clickable {
+                        cardNumber = if (cardNumber + 1 < cardItems.size) cardNumber + 1 else 0
+                    })
 
         }
     }
@@ -179,7 +186,8 @@ fun CardWithMultipleViews() {
 @Composable
 fun Greeting(name: String) {
 
-    Column(modifier = Modifier.fillMaxWidth(),
+    Column(
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
