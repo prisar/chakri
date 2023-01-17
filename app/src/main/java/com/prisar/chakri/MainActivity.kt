@@ -1,5 +1,7 @@
 package com.prisar.chakri
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
@@ -56,6 +58,7 @@ class CardItem(fromText: String, secondText: String) {
 @Composable
 fun CardWithMultipleViews() {
     var cardNumber by remember { mutableStateOf(0) }
+    val shape = CircleShape
 
     val cardItems = listOf(
         CardItem("আমি", "I"),
@@ -65,7 +68,7 @@ fun CardWithMultipleViews() {
         CardItem("তুমি কেমন আছো?", "How are you?"),
         CardItem("আমি বাড়ি যাচ্ছি", "I am going home"),
         CardItem("তুমি কি করছো", "What are you doing"),
-        CardItem("তোমার নাম কি", "WHat is your name"),
+        CardItem("তোমার নাম কি", "What is your name"),
         CardItem("তুমি কি করো ", "What do you do"),
         CardItem("সে ব্যাঙ্গালোরে থাকে", "He lives in Bangalore"),
     )
@@ -160,9 +163,6 @@ fun CardWithMultipleViews() {
                 Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 42.sp))
             }
 
-
-            val shape = CircleShape
-
             Text(text = "Next >>",
                 style = TextStyle(
                     color = Black,
@@ -181,6 +181,26 @@ fun CardWithMultipleViews() {
 
         }
     }
+
+    Text(text = "blog",
+        style = TextStyle(
+            color = Black,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center
+        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+            .background(Teal200, shape)
+            .padding(16.dp)
+            .clickable {
+                context.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://prisar.github.io/2022/03/20/chakri-app.html")
+                    )
+                )
+            })
 }
 
 @Composable
