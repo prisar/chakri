@@ -16,10 +16,12 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
@@ -142,6 +144,7 @@ fun CardWithMultipleViews() {
                     TODO("Not yet implemented")
                 }
 
+                @Deprecated("Deprecated in Java")
                 override fun onError(p0: String?) {
                     TODO("Not yet implemented")
                 }
@@ -191,13 +194,18 @@ fun CardWithMultipleViews() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .background(Teal200, shape)
+            .background(
+                brush = Brush.verticalGradient(
+                colors = listOf(
+                    MaterialTheme.colors.primary,
+                    MaterialTheme.colors.primaryVariant)
+                ), shape)
             .padding(16.dp)
             .clickable {
                 context.startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        Uri.parse("https://prisar.github.io/2022/03/20/chakri-app.html")
+                        Uri.parse("https://prisar.github.io")
                     )
                 )
             })
