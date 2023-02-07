@@ -180,28 +180,6 @@ fun KannadaCards() {
 
         }
     }
-
-    Text(text = "kannada",
-        style = TextStyle(
-            color = Black,
-            fontWeight = FontWeight.Bold,
-            textAlign = TextAlign.Center
-        ),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        MaterialTheme.colors.primary,
-                        MaterialTheme.colors.primaryVariant)
-                ), shape)
-            .padding(16.dp)
-            .clickable {
-                context.startActivity(
-                    Intent(context, KannadaActivity::class.java)
-                )
-            })
 }
 
 @Composable

@@ -11,8 +11,8 @@ android {
         applicationId "com.prisar.chakri"
         minSdk 21
         targetSdk 33
-        versionCode 99
-        versionName "1.3.99"
+        versionCode 106
+        versionName "1.3.106"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
