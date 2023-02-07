@@ -3,6 +3,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,6 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Chakri">
+        <activity
+            android:name=".KannadaActivity"
+            android:exported="false"
+            android:label="@string/title_activity_kannada"
+            android:theme="@style/Theme.Chakri" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -21,9 +32,4 @@
         </activity>
     </application>
 
-    <queries>
-        <intent>
-            <action android:name="android.intent.action.TTS_SERVICE" />
-        </intent>
-    </queries>
 </manifest>

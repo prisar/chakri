@@ -1,7 +1,6 @@
 package com.prisar.chakri
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.UtteranceProgressListener
@@ -13,11 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults.buttonColors
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,41 +34,41 @@ import com.prisar.chakri.ui.theme.Yellow
 import java.util.*
 import kotlin.math.roundToInt
 
-class MainActivity : ComponentActivity() {
+class KannadaActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             ChakriTheme {
-                Greeting("Android")
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
+                    Greeting2("Android")
+                }
             }
         }
-
-//        QuizScreen()
-
     }
 }
 
-class CardItem(fromText: String, secondText: String) {
-    val fromText = fromText
-    val secondText = secondText
-}
-
 @Composable
-fun CardWithMultipleViews() {
+fun KannadaCards() {
     var cardNumber by remember { mutableStateOf(0) }
     val shape = CircleShape
 
     val cardItems = listOf(
-        CardItem("আমি", "I"),
-        CardItem("তুমি", "You"),
-        CardItem("তারা", "They"),
-        CardItem("ধন্যবাদ", "Thank you"),
-        CardItem("তুমি কেমন আছো?", "How are you?"),
-        CardItem("আমি বাড়ি যাচ্ছি", "I am going home"),
-        CardItem("তুমি কি করছো", "What are you doing"),
-        CardItem("তোমার নাম কি", "What is your name"),
-        CardItem("তুমি কি করো ", "What do you do"),
-        CardItem("সে ব্যাঙ্গালোরে থাকে", "He lives in Bangalore"),
+        CardItem("আমি", "ನಾನು"),
+        CardItem("তুমি", "ನೀವು"),
+        CardItem("তারা", "ಅವರು"),
+        CardItem("ধন্যবাদ", "ಧನ್ಯವಾದ"),
+        CardItem("তুমি কেমন আছো?", "ನೀವು ಹೇಗಿದ್ದೀರಿ?"),
+        CardItem("আমি বাড়ি যাচ্ছি", "ನಾನು ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ"),
+        CardItem("তুমি কি করছো", "ನೀನು ಏನು ಮಾಡುತ್ತಿರುವೆ"),
+        CardItem("তোমার নাম কি", "ನಿನ್ನ ಹೆಸರೇನು"),
+        CardItem("তুমি কি করো ", "ನೀವೇನು ಮಾಡುವಿರಿ"),
+        CardItem("সে ব্যাঙ্গালোরে থাকে", "ಅವನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಸಿಸುತ್ತಾನೆ"),
+        CardItem("i will go to indiranagar", "ನಾನು ಇಂದಿರಾನಗರಕ್ಕೆ ಹೋಗುತ್ತೇನೆ"),
+        CardItem("tomorrow i have an exam", "ನಾಳೆ ನನಗೆ ಪರೀಕ್ಷೆ ಇದೆ"),
     )
 
     val paddingModifier = Modifier.padding(10.dp)
@@ -150,10 +146,10 @@ fun CardWithMultipleViews() {
                 }
             }
 
-            textToSpeech.language = Locale("en", "IN")
+            textToSpeech.language = Locale("kn", "IN")
             textToSpeech.setOnUtteranceProgressListener(utteranceProgressListener)
 
-            Button(colors = buttonColors(backgroundColor = Teal200),
+            Button(colors = ButtonDefaults.buttonColors(backgroundColor = Teal200),
                 modifier = Modifier.padding(16.dp),
                 onClick = {
                     textToSpeech.speak(
@@ -196,9 +192,9 @@ fun CardWithMultipleViews() {
             .padding(16.dp)
             .background(
                 brush = Brush.verticalGradient(
-                colors = listOf(
-                    MaterialTheme.colors.primary,
-                    MaterialTheme.colors.primaryVariant)
+                    colors = listOf(
+                        MaterialTheme.colors.primary,
+                        MaterialTheme.colors.primaryVariant)
                 ), shape)
             .padding(16.dp)
             .clickable {
@@ -209,16 +205,22 @@ fun CardWithMultipleViews() {
 }
 
 @Composable
-fun Greeting(name: String) {
-
+fun Greeting2(name: String) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("Learn English")
+        Text("Learn Kannada")
 
-        CardWithMultipleViews()
+        KannadaCards()
     }
+}
 
+@Preview(showBackground = true)
+@Composable
+fun DefaultPreview() {
+    ChakriTheme {
+        Greeting2("Android")
+    }
 }
