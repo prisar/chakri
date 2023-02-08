@@ -67,8 +67,13 @@ fun KannadaCards() {
         CardItem("তোমার নাম কি", "ನಿನ್ನ ಹೆಸರೇನು"),
         CardItem("তুমি কি করো ", "ನೀವೇನು ಮಾಡುವಿರಿ"),
         CardItem("সে ব্যাঙ্গালোরে থাকে", "ಅವನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಸಿಸುತ್ತಾನೆ"),
-        CardItem("i will go to indiranagar", "ನಾನು ಇಂದಿರಾನಗರಕ್ಕೆ ಹೋಗುತ್ತೇನೆ"),
-        CardItem("tomorrow i have an exam", "ನಾಳೆ ನನಗೆ ಪರೀಕ್ಷೆ ಇದೆ"),
+        CardItem("আমি ইন্দিরানগর যাব", "ನಾನು ಇಂದಿರಾನಗರಕ್ಕೆ ಹೋಗುತ್ತೇನೆ"), // i will go to indiranagar
+        CardItem("আগামীকাল আমার পরীক্ষা আছে", "ನಾಳೆ ನನಗೆ ಪರೀಕ್ಷೆ ಇದೆ"), // tomorrow i have an exam
+        CardItem("আমি ডাক্তারের কাছে যাব", "ನಾನು ವೈದ್ಯರ ಬಳಿಗೆ ಹೋಗುತ್ತೇನೆ"), // I will go to the doctor
+        CardItem("আপনার বয়স কত", "ನಿನ್ನ ವಯಸ್ಸು ಎಷ್ಟು"),  // how old are you
+        CardItem("তুমি কোথায় যাবে", "ನೀವು ಎಲ್ಲಿಗೆ ಹೋಗುತ್ತೀರಿ"), // where will you go
+        CardItem("কখন ট্রেন আসবে", "ರೈಲು ಯಾವಾಗ ಬರುತ್ತದೆ"), // when will the train come
+        CardItem("আমি কন্নড় শিখছি", "ನಾನು ಕನ್ನಡ ಕಲಿಯುತ್ತಿದ್ದೇನೆ"), // I am learning kannada
     )
 
     val paddingModifier = Modifier.padding(10.dp)
