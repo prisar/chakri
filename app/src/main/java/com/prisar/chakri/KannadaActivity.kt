@@ -74,6 +74,13 @@ fun KannadaCards() {
         CardItem("তুমি কোথায় যাবে", "ನೀವು ಎಲ್ಲಿಗೆ ಹೋಗುತ್ತೀರಿ"), // where will you go
         CardItem("কখন ট্রেন আসবে", "ರೈಲು ಯಾವಾಗ ಬರುತ್ತದೆ"), // when will the train come
         CardItem("আমি কন্নড় শিখছি", "ನಾನು ಕನ್ನಡ ಕಲಿಯುತ್ತಿದ್ದೇನೆ"), // I am learning kannada
+        CardItem("how much?", "ಎಷ್ಟು?"), // how much?
+        CardItem("where", "ಎಲ್ಲಿ"), // elli
+        CardItem("five hundred", "ಐದು ನೂರು"), // aidu nuru
+        CardItem("twenty five", "ಇಪ್ಪತ್ತೈದು"), // Ippattaidu
+        CardItem("drink", "ಕುಡಿಯಿರಿ"), //Kuḍiyiri
+        CardItem("read", "ಓದಿದೆ"), // Ōdide
+        CardItem("arrive", "ತಲುಪು"),
     )
 
     val paddingModifier = Modifier.padding(10.dp)
