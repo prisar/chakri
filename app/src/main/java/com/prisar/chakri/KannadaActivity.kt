@@ -82,6 +82,7 @@ fun KannadaCards() {
         CardItem("read", "ಓದಿದೆ"), // Ōdide
         CardItem("arrive", "ತಲುಪು"),
         CardItem("can i sit here", "ನಾನು ಇಲ್ಲಿ ಕುಳಿತುಕೊಳ್ಳಬಹುದೇ"), //Nānu illi kuḷitukoḷḷabahudē
+        CardItem("See you later", "ಆಮೇಲೆ ಸಿಗೋಣ") // Āmēle sigōṇa
     )
 
     val paddingModifier = Modifier.padding(10.dp)
