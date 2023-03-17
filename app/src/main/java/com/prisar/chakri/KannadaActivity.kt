@@ -99,7 +99,7 @@ fun KannadaCards() {
             .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
             .fillMaxWidth()
             .height(400.dp)
-            .padding(10.dp)
+            .padding(30.dp)
             .background(color = Teal200)
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
@@ -131,8 +131,8 @@ fun KannadaCards() {
                         }
                     }
 
-                    offsetX += dragAmount.x
-                    offsetY += dragAmount.y
+//                    offsetX += dragAmount.x
+//                    offsetY += dragAmount.y
                 }
             }
     ) {
@@ -141,7 +141,7 @@ fun KannadaCards() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(cardItems[cardNumber].fromText, style = TextStyle(fontSize = 42.sp))
+            Text(cardItems[cardNumber].fromText, style = TextStyle(fontSize = 24.sp))
 
             val textToSpeech: TextToSpeech =
                 TextToSpeech(LocalContext.current, TextToSpeech.OnInitListener { })

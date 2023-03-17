@@ -13,6 +13,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults.buttonColors
 import androidx.compose.material.Card
@@ -35,6 +36,7 @@ import com.prisar.chakri.ui.theme.Black
 import com.prisar.chakri.ui.theme.ChakriTheme
 import com.prisar.chakri.ui.theme.Teal200
 import com.prisar.chakri.ui.theme.Yellow
+import com.prisar.chakri.ui.theme.SkyBlue
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -84,13 +86,14 @@ fun CardWithMultipleViews() {
 
     Card(
         elevation = 10.dp,
-        contentColor = Color.White,
+        contentColor = Color.Black,
+        backgroundColor = SkyBlue,
+        shape = RoundedCornerShape(15.dp),
         modifier = Modifier
             .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
             .fillMaxWidth()
             .height(400.dp)
-            .padding(10.dp)
-            .background(color = Teal200)
+            .padding(30.dp)
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
@@ -121,8 +124,8 @@ fun CardWithMultipleViews() {
                         }
                     }
 
-                    offsetX += dragAmount.x
-                    offsetY += dragAmount.y
+//                    offsetX += dragAmount.x
+//                    offsetY += dragAmount.y
                 }
             }
     ) {
@@ -131,7 +134,7 @@ fun CardWithMultipleViews() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(cardItems[cardNumber].fromText, style = TextStyle(fontSize = 42.sp))
+            Text(cardItems[cardNumber].fromText, style = TextStyle(fontSize = 24.sp))
 
             val textToSpeech: TextToSpeech =
                 TextToSpeech(LocalContext.current, TextToSpeech.OnInitListener { })
@@ -154,7 +157,11 @@ fun CardWithMultipleViews() {
             textToSpeech.setOnUtteranceProgressListener(utteranceProgressListener)
 
             Button(colors = buttonColors(backgroundColor = Teal200),
-                modifier = Modifier.padding(16.dp),
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .width(300.dp)
+                    .height(200.dp)
+                    .padding(30.dp),
                 onClick = {
                     textToSpeech.speak(
                         cardItems[cardNumber].secondText,
@@ -163,7 +170,7 @@ fun CardWithMultipleViews() {
                     )
 
                 }) {
-                Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 42.sp))
+                Text(text = cardItems[cardNumber].secondText, style = TextStyle(fontSize = 32.sp))
             }
 
             Text(text = "Next >>",
@@ -173,9 +180,9 @@ fun CardWithMultipleViews() {
                     textAlign = TextAlign.Center
                 ),
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .width(200.dp)
                     .padding(16.dp)
-                    .border(2.dp, Black, shape)
+//                    .border(2.dp, Black, shape)
                     .background(Yellow, shape)
                     .padding(16.dp)
                     .clickable {
