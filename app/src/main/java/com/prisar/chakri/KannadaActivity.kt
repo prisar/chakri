@@ -12,6 +12,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -23,14 +24,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.prisar.chakri.ui.theme.Black
-import com.prisar.chakri.ui.theme.ChakriTheme
-import com.prisar.chakri.ui.theme.Teal200
-import com.prisar.chakri.ui.theme.Yellow
+import com.prisar.chakri.ui.theme.*
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -94,13 +93,14 @@ fun KannadaCards() {
 
     Card(
         elevation = 10.dp,
-        contentColor = Color.White,
+        contentColor = Color.Black,
+        backgroundColor = SkyBlue,
+        shape = RoundedCornerShape(15.dp),
         modifier = Modifier
             .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
             .fillMaxWidth()
             .height(400.dp)
             .padding(30.dp)
-            .background(color = Teal200)
             .pointerInput(Unit) {
                 detectDragGestures { change, dragAmount ->
                     change.consume()
@@ -185,7 +185,7 @@ fun KannadaCards() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .border(2.dp, Black, shape)
+//                    .border(2.dp, Black, shape)
                     .background(Yellow, shape)
                     .padding(16.dp)
                     .clickable {
@@ -201,9 +201,16 @@ fun Greeting2(name: String) {
     Column(
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween
+        verticalArrangement = Arrangement.Center
     ) {
-        Text("Learn Kannada")
+        Text("Learn Kannada",
+            style = TextStyle(
+//                color = Black,
+                fontWeight = FontWeight.Bold,
+                fontSize = 32.sp,
+                textAlign = TextAlign.Center
+            ),
+        )
 
         KannadaCards()
     }

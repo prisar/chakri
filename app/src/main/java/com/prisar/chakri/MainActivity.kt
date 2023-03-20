@@ -223,7 +223,14 @@ fun Greeting(name: String) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text("Learn English")
+        Text("Learn English",
+            style = TextStyle(
+//                color = Black,
+            fontWeight = FontWeight.Bold,
+            fontSize = 32.sp,
+            textAlign = TextAlign.Center
+            ),
+        )
 
         CardWithMultipleViews()
     }
