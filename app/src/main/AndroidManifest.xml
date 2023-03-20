@@ -17,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chakri">
         <activity
+            android:name=".EnglishActivity"
+            android:exported="false"
+            android:label="@string/title_activity_english"
+            android:theme="@style/Theme.Chakri" />
+        <activity
             android:name=".KannadaActivity"
             android:exported="false"
             android:label="@string/title_activity_kannada"

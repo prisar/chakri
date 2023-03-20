@@ -3,4 +3,5 @@
     <string name="greeting">greeting</string>
     <string name="title_quiz">quiz</string>
     <string name="title_activity_kannada">KannadaActivity</string>
+    <string name="title_activity_english">EnglishActivity</string>
 </resources>
