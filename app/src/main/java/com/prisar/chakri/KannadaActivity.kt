@@ -51,16 +51,16 @@ fun KannadaCards() {
     val shape = CircleShape
 
     val cardItems = listOf(
-        CardItem("আমি", "ನಾನು"),
-        CardItem("তুমি", "ನೀವು"),
-        CardItem("তারা", "ಅವರು"),
-        CardItem("ধন্যবাদ", "ಧನ್ಯವಾದ"),
-        CardItem("তুমি কেমন আছো?", "ನೀವು ಹೇಗಿದ್ದೀರಿ?"),
-        CardItem("আমি বাড়ি যাচ্ছি", "ನಾನು ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ"),
+        CardItem("আমি", "ನಾನು"), // I
+        CardItem("তুমি", "ನೀವು"), // you
+        CardItem("তারা", "ಅವರು"), // they
+        CardItem("ধন্যবাদ", "ಧನ್ಯವಾದ"), // thank you
+        CardItem("তুমি কেমন আছো?", "ನೀವು ಹೇಗಿದ್ದೀರಿ?"), // how are you?
+        CardItem("আমি বাড়ি যাচ্ছি", "ನಾನು ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ"), // i am going home
         CardItem("তুমি কি করছো", "ನೀನು ಏನು ಮಾಡುತ್ತಿರುವೆ"),
-        CardItem("তোমার নাম কি", "ನಿನ್ನ ಹೆಸರೇನು"),
-        CardItem("তুমি কি করো ", "ನೀವೇನು ಮಾಡುವಿರಿ"),
-        CardItem("সে ব্যাঙ্গালোরে থাকে", "ಅವನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಸಿಸುತ್ತಾನೆ"),
+        CardItem("তোমার নাম কি", "ನಿನ್ನ ಹೆಸರೇನು"), // what is your name?
+        CardItem("তুমি কি করো ", "ನೀವೇನು ಮಾಡುವಿರಿ"), // what do you do?
+        CardItem("সে ব্যাঙ্গালোরে থাকে", "ಅವನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಸಿಸುತ್ತಾನೆ"), // he lives in bangalore
         CardItem("আমি ইন্দিরানগর যাব", "ನಾನು ಇಂದಿರಾನಗರಕ್ಕೆ ಹೋಗುತ್ತೇನೆ"), // i will go to indiranagar
         CardItem("আগামীকাল আমার পরীক্ষা আছে", "ನಾಳೆ ನನಗೆ ಪರೀಕ್ಷೆ ಇದೆ"), // tomorrow i have an exam
         CardItem("আমি ডাক্তারের কাছে যাব", "ನಾನು ವೈದ್ಯರ ಬಳಿಗೆ ಹೋಗುತ್ತೇನೆ"), // I will go to the doctor
@@ -72,11 +72,40 @@ fun KannadaCards() {
         CardItem("where", "ಎಲ್ಲಿ"), // elli
         CardItem("five hundred", "ಐದು ನೂರು"), // aidu nuru
         CardItem("twenty five", "ಇಪ್ಪತ್ತೈದು"), // Ippattaidu
-        CardItem("drink", "ಕುಡಿಯಿರಿ"), //Kuḍiyiri
+        CardItem("drink", "ಕುಡಿಯಿರಿ"), // Kuḍiyiri
         CardItem("read", "ಓದಿದೆ"), // Ōdide
         CardItem("arrive", "ತಲುಪು"),
         CardItem("can i sit here", "ನಾನು ಇಲ್ಲಿ ಕುಳಿತುಕೊಳ್ಳಬಹುದೇ"), //Nānu illi kuḷitukoḷḷabahudē
         CardItem("See you later", "ಆಮೇಲೆ ಸಿಗೋಣ") // Āmēle sigōṇa
+        // what are you eating?
+        // how are you today?
+        // are you in office?
+        // when will you come from office?
+        // which food do you like?
+        // when are you going home?
+        // morning
+        // evening
+        // afternoon
+        // night
+        // work
+        // i am busy
+        // it is raining
+        // do you have umbrella?
+        // let's go home
+        // do you want to buy anything?
+        // where are you going?
+        // you are looking pretty
+        // when will you go to office?
+        // are you hungry?
+        // happy birthday
+        // i am thirsty
+        // can you bring me some water?
+        // i like playing chess
+        // what is your hobby?
+        // are you married?
+        // are you a student?
+        // when can you come?
+        // i am in bus
     )
 
     val paddingModifier = Modifier.padding(10.dp)
