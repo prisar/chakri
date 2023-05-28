@@ -104,7 +104,7 @@ fun Greeting(name: String) {
                 .padding(20.dp),
             onClick = {
                 context.startActivity(
-                    Intent(context, KannadaActivity::class.java)
+                    Intent(context, HindiActivity::class.java)
                 )
 
             }) {
@@ -119,7 +119,7 @@ fun Greeting(name: String) {
                 .padding(20.dp),
             onClick = {
                 context.startActivity(
-                    Intent(context, KannadaActivity::class.java)
+                    Intent(context, MalayalamActivity::class.java)
                 )
 
             }) {

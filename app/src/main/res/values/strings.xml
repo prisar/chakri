@@ -4,4 +4,6 @@
     <string name="title_quiz">quiz</string>
     <string name="title_activity_kannada">KannadaActivity</string>
     <string name="title_activity_english">EnglishActivity</string>
+    <string name="title_activity_hindi">HindiActivity</string>
+    <string name="title_activity_malayalam">MalayalamActivity</string>
 </resources>
