@@ -45,7 +45,16 @@ class KannadaActivity : ComponentActivity() {
     }
 }
 
-data class FlashCard(val bn: String, val en: String, val kd: String, val hi: String, val ml: String)
+
+val flashCards: List<FlashCard> = listOf<FlashCard>(
+    FlashCard("আমি", "I", "ನಾನು", "", ""),
+    FlashCard("তুমি", "you", "ನೀವು", "", ""), // you
+    FlashCard("তারা", "they", "ಅವರು", "", ""), // they
+    FlashCard("ধন্যবাদ", "thank you", "ಧನ್ಯವಾದ", "", ""), // thank you
+    FlashCard("তুমি কেমন আছো?", "how are you?", "ನೀವು ಹೇಗಿದ್ದೀರಿ?", "", ""), // how are you?
+    FlashCard("আমি বাড়ি যাচ্ছি", "i am going home", "ನಾನು ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ", "", ""), // i am going home
+    FlashCard("তুমি কি করছো", "what are you doing", "ನೀನು ಏನು ಮಾಡುತ್ತಿರುವೆ", "", ""), // what are you doing
+)
 
 @Composable
 fun KannadaCards() {
@@ -59,7 +68,7 @@ fun KannadaCards() {
         CardItem("ধন্যবাদ", "ಧನ್ಯವಾದ"), // thank you
         CardItem("তুমি কেমন আছো?", "ನೀವು ಹೇಗಿದ್ದೀರಿ?"), // how are you?
         CardItem("আমি বাড়ি যাচ্ছি", "ನಾನು ಮನೆಗೆ ಹೋಗುತ್ತೇನೆ"), // i am going home
-        CardItem("তুমি কি করছো", "ನೀನು ಏನು ಮಾಡುತ್ತಿರುವೆ"),
+        CardItem("তুমি কি করছো", "ನೀನು ಏನು ಮಾಡುತ್ತಿರುವೆ"), // what are you doing
         CardItem("তোমার নাম কি", "ನಿನ್ನ ಹೆಸರೇನು"), // what is your name?
         CardItem("তুমি কি করো ", "ನೀವೇನು ಮಾಡುವಿರಿ"), // what do you do?
         CardItem("সে ব্যাঙ্গালোরে থাকে", "ಅವನು ಬೆಂಗಳೂರಿನಲ್ಲಿ ವಾಸಿಸುತ್ತಾನೆ"), // he lives in bangalore

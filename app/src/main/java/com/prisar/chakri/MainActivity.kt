@@ -56,6 +56,8 @@ class CardItem(fromText: String, secondText: String) {
     val secondText = secondText
 }
 
+data class FlashCard(val bn: String, val en: String, val kd: String, val hi: String, val ml: String)
+
 @Composable
 fun Greeting(name: String) {
 
