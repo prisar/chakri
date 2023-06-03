@@ -45,6 +45,8 @@ class KannadaActivity : ComponentActivity() {
     }
 }
 
+data class FlashCard(val bn: String, val en: String, val kd: String, val hi: String, val ml: String)
+
 @Composable
 fun KannadaCards() {
     var cardNumber by remember { mutableStateOf(0) }
